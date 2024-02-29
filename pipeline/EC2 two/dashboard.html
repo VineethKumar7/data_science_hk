@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Data Table</h2>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Query</th>
+                <th>Slice</th>
+                <th>Segment</th>
+                <th>Step</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Task Num</th>
+                <th>Rows</th>
+                <th>Type</th>
+                <th>Is Disk Based</th>
+                <th>Slots</th>
+                <th>Work Mem</th>
+                <th>Max Buffers Used</th>
+                <th>Resizes</th>
+                <th>Occupied</th>
+                <th>Flushable</th>
+                <th>Used Unique Prefetching</th>
+                <th>Bytes</th>
+                <!-- Add other fields as necessary -->
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        fetch('http://localhost:5000/get-data')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+                data.forEach(item => {
+                    let row = tableBody.insertRow();
+                    Object.values(item).forEach(text => {
+                        let cell = row.insertCell();
+                        cell.innerHTML = text;
+                    });
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>

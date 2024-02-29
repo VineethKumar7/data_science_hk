@@ -43,7 +43,7 @@ for message in consumer:
     messages.append(message.value)
 
     # Check if a minute has passed
-    if (current_time - start_time).total_seconds() >= 60:
+    if (current_time - start_time).total_seconds() >= 10:
         # Save the aggregated messages
         save_data(messages, current_time)
         # Reset messages and start time for the next cycle
