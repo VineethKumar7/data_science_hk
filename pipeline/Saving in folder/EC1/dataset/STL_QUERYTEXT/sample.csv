@@ -1,0 +1,5 @@
+,column00,column01,column02,column03,column04,column05
+0,100,480007,1073741998,1040383,0,"select\n    n_name,\n    sum(l_extendedprice * (1 - l_discount)) as revenue\nfrom\n    customer,\n    orders,\n    lineitem,\n    supplier,\n    nation,\n    region\nwhere\n        c_custkey = o_custk"
+1,100,480008,1073741998,1040386,1," (6::numeric(12,2) / 100) - 0.01 and (6::numeric(12,2) / 100) + 0.01\n  and l_quantity < 25;"
+2,100,480009,1073741998,1040389,3,\n          and s_nationkey = n1.n_nationkey\n          and c_nationkey = n2.n_nationkey\n          and (\n                (n1.n_name = 'KENYA' and n2.n_name = 'ETHIOPIA')\n                or (n1.n_na
+3,100,480010,1073741998,1040392,1,"rom o_orderdate) as o_year,\n            l_extendedprice * (1 - l_discount) as volume,\n            n2.n_name as nation\n        from\n            part,\n            supplier,\n            lineitem,"

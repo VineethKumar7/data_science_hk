@@ -1,0 +1,6 @@
+column0,column1,column2,column3,column4,column5,column6,column8,column9,column10,column11
+1,1376924,maintenance,619879,1073963382,dev,Alter Distkey: copy data from 106432 to 244304.,2024-02-14 17:09:40.063454,0,0,0
+1,1376954,maintenance,619879,1073963382,dev,Alter Distkey: rebuild rowids for table 244304 on temp table -244305.,2024-02-14 17:09:40.44707,0,0,3
+1,1376958,maintenance,619879,1073963382,dev,"Alter Distkey: select count(*), max(insxid), min(insxid) from {table:244304} where delxid > 619865 and delxid != 619879;",2024-02-14 17:09:41.486201,0,0,3
+1,1378584,maintenance,620803,1073807566,dev,Alter Distkey: redo delete from 106434 to 244442.,2024-02-14 17:14:06.3951,0,0,3
+1,1378589,maintenance,620803,1073807566,dev,"Alter Distkey: select count(*), max(insxid), min(insxid) from {table:106434} where delxid > 620800 and delxid != 620803;",2024-02-14 17:14:08.461365,0,0,3

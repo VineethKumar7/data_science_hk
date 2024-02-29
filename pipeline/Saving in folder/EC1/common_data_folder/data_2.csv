@@ -1,0 +1,5 @@
+column0,column1,column2,column3,column4,column5,column6,column8,column9,column10,column11
+1,1343338,maintenance,605719,1073995974,dev,ALTER COLUMN ENCODE TYPE: compare shadow col data in 106440 part primary_col= 3 shadow col= 12.,2024-02-14 16:31:39.287588,0,0,3
+1,1347988,maintenance,607776,1073782983,dev,ALTER COLUMN ENCODE TYPE: copy data in 106432 from col=2 to col= 12;,2024-02-14 16:37:27.279398,0,0,3
+1,1348046,maintenance,607779,1073782983,dev,ALTER COLUMN ENCODE TYPE: copy data in 106430 from col=6 to col= 11;,2024-02-14 16:37:34.41898,0,0,3
+1,1348899,maintenance,608175,1073889492,dev,ALTER COLUMN ENCODE TYPE: compare shadow col data in 106440 part primary_col= 2 shadow col= 12.,2024-02-14 16:38:36.211956,0,0,3
