@@ -9,13 +9,14 @@ key_words = {1: 'select l_returnflag', 2: 's_acctbal', 3: 'select l_orderkey', 4
              11: 'ps_partkey', 12: 'l_shipmode', 13: 'c_count', 14: 'p_type', 15: 'l_suppkey', 16: 'p_brand',
              17: 'l_extendedprice', 18: 'c_custkey', 19: 'l_discount', 20: 's_address', 21: 'numwait', 22: 'cntrycode'}
 class QueryProcessor:
-    QUERY_HISTORY = []
+
     def __init__(self, table_name = f'STL_QUERYTEXT_combined',
                 csv_file_path = f'./dataset/STL_QUERYTEXT/combined_stl_querytext.csv',
                 df: pd.DataFrame = None):
         self.df = df
         self.table_name = table_name
         self.csv_file_path = csv_file_path
+        self.QUERY_HISTORY = []
     def find_query_instance_count(self, table, df):
         duckdb.sql(f"CREATE TABLE {table} AS SELECT * FROM df")
         # insert into the table "my_table" from the DataFrame "my_df"

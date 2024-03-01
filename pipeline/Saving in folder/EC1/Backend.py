@@ -5,10 +5,9 @@ import pandas as pd
 import os
 import json
 
+
 app = Flask(__name__)
 CORS(app)
-
-# Assuming QueryProcessor is defined somewhere in your project
 
 directory_path = "./common_data_folder"
 
@@ -19,14 +18,16 @@ def get_processed_data():
 
     for file_path in all_files:
         df = pd.read_csv(file_path)
-        print(df)
+        # Rename columns before creating QueryProcessor instance
         cols = [f'column{i}' for i in range(len(df.columns))]
-        qp = QueryProcessor(df=df)
         df.columns = cols
+        # Now create the QueryProcessor instance with the correctly named columns
+        qp = QueryProcessor(df=df)
         qp.find_query_instance_count(table="instance_count", df=df)
-        query_counts.append(len(qp.QUERY_HISTORY))  # Now works correctly since QUERY_HISTORY is instance-specific
+        query_counts.append(len(qp.QUERY_HISTORY))  # Assuming QUERY_HISTORY reflects the correct operation
 
     return jsonify({"file_counts": query_counts})
 
 if __name__ == '__main__':
     app.run(debug=True)
+
