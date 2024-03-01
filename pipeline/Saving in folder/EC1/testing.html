@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart.js Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <style>
+        /* Add styles to limit the size and position of the chart on the page */
+        .chart-container {
+            width: 50%; /* Adjust width as needed */
+            height: 400px; /* Adjust height as needed */
+            margin: 50px auto; /* Center the container on the page with margin */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Wrap your canvas with a div container -->
+<div class="chart-container">
+    <canvas id="myChart"></canvas> <!-- Removed inline width and height, it will be controlled by CSS -->
+</div>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [], // X-axis labels will be updated dynamically
+            datasets: [{
+                label: 'Number of Queries',
+                data: [], // Data points for Y-axis
+                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Function to fetch data and update the chart
+    function fetchDataAndUpdateChart() {
+        fetch('http://127.0.0.1:5000/get-processed-data')
+            .then(response => response.json())
+            .then(data => {
+                const fileCounts = data.file_counts;
+                // Generate labels for the x-axis based on a 5-second interval
+                const labels = fileCounts.map((_, index) => (index + 1) * 5);
+
+                // Update chart data and labels
+                myChart.data.labels = labels;
+                myChart.data.datasets.forEach((dataset) => {
+                    dataset.data = fileCounts;
+                });
+
+                // Refresh the chart to show updated data
+                myChart.update();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Update the chart every 3 seconds
+    setInterval(fetchDataAndUpdateChart, 3000);
+</script>
+</body>
+</html>
